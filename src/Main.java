@@ -9,12 +9,12 @@ public class Main {
         array.add(99);
         for (int i = 0; i < array.size(); i++)
             System.out.println(array.get(i));
-        System.out.println("///////////////////////");
-        System.out.println(array.getFirst());
-        System.out.println(array.getLast());
-        array.addFirst(1);
-        array.addLast(1000);
+        System.out.println("//////////");
+        array.removeLast();
+        array.removeFirst();
+        array.remove(2);
         for (int i = 0; i < array.size(); i++)
             System.out.println(array.get(i));
+        array.toArray();
     }
 }

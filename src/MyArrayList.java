@@ -69,17 +69,24 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public void remove(int index) {
-
+        for (int i = index; i < size - 1; i++)
+            array[i] = array[i + 1];
+        array[size - 1] = null;
+        size--;
     }
 
     @Override
     public void removeFirst() {
-
+        for (int i = 0; i < size - 1; i++)
+            array[i] = array[i + 1];
+        size--;
     }
 
     @Override
     public void removeLast() {
-
+        for (int i = 0; i < size - 1; i++)
+            array[i] = array[i];
+        size--;
     }
 
     @Override
@@ -104,7 +111,10 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] array2 = new Object[size];
+        for (int i = 0; i < size; i++)
+            array2[i] = array[i];
+        return array2;
     }
 
     @Override
