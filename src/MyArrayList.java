@@ -1,19 +1,45 @@
 import java.util.Iterator;
 
 public class MyArrayList<T> implements MyList<T>{
+
+    private T[] array;
+    private int size;
+    private int capacity = 5;
+
+    public MyArrayList(){
+        array = (T[]) new Object[capacity];
+    }
+
     @Override
     public void add(T item) {
-
+        if (size == capacity){
+            capacity = 2 * capacity;
+            Object[] array2 = new Object[capacity];
+            for (int i = 0; i < size; i++)
+                array2[i] = array[i];
+            array = (T[]) array2;
+        }
+        array[size++] = item;
     }
 
     @Override
     public void set(int index, T item) {
-
+        array[index] = item;
     }
 
     @Override
     public void add(int index, T item) {
-
+        if (size == capacity){
+            capacity = 2 * capacity;
+            Object[] array2 = new Object[capacity];
+            for (int i = 0; i < size; i++)
+                array2[i] = array[i];
+            array = (T[]) array2;
+        }
+        for (int i = size - 1; i >= index; i--)
+            array[i + 1] = array[i];
+        array[index] = item;
+        size++;
     }
 
     @Override
@@ -28,7 +54,7 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public T get(int index) {
-        return null;
+        return array[index];
     }
 
     @Override
@@ -88,7 +114,7 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
