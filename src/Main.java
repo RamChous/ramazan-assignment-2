@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class Main {
     public static void main(String[] args) {
         MyList<Integer> array = new MyArrayList<>();
@@ -9,10 +11,9 @@ public class Main {
         array.add(99);
         for (int i = 0; i < array.size(); i++)
             System.out.println(array.get(i));
-        System.out.println("//////////");
-        System.out.println(array.indexOf(23));
-        System.out.println(array.lastIndexOf(23));
-        System.out.println(array.exists(7));
-        System.out.println(array.exists("arar"));
+        System.out.println("/////");
+        array.sort(Comparator.naturalOrder());
+        for (int i = 0; i < array.size(); i++)
+            System.out.println(array.get(i));
     }
 }

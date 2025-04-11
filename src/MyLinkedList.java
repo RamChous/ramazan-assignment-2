@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class MyLinkedList<T> implements MyList<T>{
@@ -57,7 +58,7 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     @Override
-    public void sort() {
+    public void sort(Comparator<T> cmp) {
 
     }
 

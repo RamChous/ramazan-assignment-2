@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class MyArrayList<T> implements MyList<T>{
@@ -90,8 +91,17 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public void sort() {
-
+    public void sort(Comparator<T> cmp) {
+        for (int i = 0; i < size - 1; i++){
+            for (int j = 0; j < size - i - 1; j++){
+                T current = (T) array[j];
+                T next = (T) array[j + 1];
+                if (cmp.compare(current, next) > 0){
+                    array[j] = next;
+                    array[j + 1] = current;
+                }
+            }
+        }
     }
 
     @Override
