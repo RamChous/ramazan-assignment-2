@@ -96,17 +96,35 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        if (object == null){
+            for (int i = 0; i < size; i++)
+                if (array[i] == null)
+                    return i;
+        } else {
+            for (int i = 0; i < size; i++)
+                if (object.equals(array[i]))
+                    return i;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        if (object == null){
+            for (int i = size; i >= 0; i--)
+                if (array[i] == null)
+                    return i;
+        } else {
+            for (int i = size; i >= 0; i--)
+                if (object.equals(array[i]))
+                    return i;
+        }
+        return -1;
     }
 
     @Override
     public boolean exists(Object object) {
-        return false;
+        return indexOf(object) != -1;
     }
 
     @Override
@@ -131,6 +149,21 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new MyIterator();
+    }
+    private class MyIterator implements Iterator<T>{
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor != size();
+        }
+
+        @Override
+        public T next() {
+            T nextItem = get(cursor);
+            cursor++;
+            return nextItem;
+        }
     }
 }

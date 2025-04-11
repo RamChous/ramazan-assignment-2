@@ -10,11 +10,9 @@ public class Main {
         for (int i = 0; i < array.size(); i++)
             System.out.println(array.get(i));
         System.out.println("//////////");
-        array.removeLast();
-        array.removeFirst();
-        array.remove(2);
-        for (int i = 0; i < array.size(); i++)
-            System.out.println(array.get(i));
-        array.toArray();
+        System.out.println(array.indexOf(23));
+        System.out.println(array.lastIndexOf(23));
+        System.out.println(array.exists(7));
+        System.out.println(array.exists("arar"));
     }
 }
