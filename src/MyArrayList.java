@@ -44,12 +44,12 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public void addFirst(T item) {
-
+        add(0, item);
     }
 
     @Override
-    public void addLast(T Item) {
-
+    public void addLast(T item) {
+        add(item);
     }
 
     @Override
@@ -59,12 +59,12 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public T getFirst() {
-        return null;
+        return array[0];
     }
 
     @Override
     public T getLast() {
-        return null;
+        return array[size - 1];
     }
 
     @Override
@@ -109,7 +109,9 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public void clear() {
-
+        for (int i = 0; i < size; i++)
+            array[i] = null;
+        size = 0;
     }
 
     @Override

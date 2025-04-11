@@ -3,7 +3,7 @@ public interface MyList<T> extends Iterable<T>{
     void set(int index, T item);
     void add(int index, T item);
     void addFirst(T item);
-    void addLast(T Item);
+    void addLast(T item);
     T get(int index);
     T getFirst();
     T getLast();
