@@ -4,8 +4,8 @@ import java.util.Iterator;
 public class MyArrayList<T> implements MyList<T>{
 
     private T[] array;
-    private int size;
-    private int capacity = 5;
+    private int size;  // how many element it actually has
+    private int capacity = 5;  // how many elements it can store
 
     public MyArrayList(){
         array = (T[]) new Object[capacity];
@@ -91,11 +91,11 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public void sort(Comparator<T> cmp) {
+    public void sort(Comparator<T> cmp) {  // bubble sort with comparator to compare objects
         for (int i = 0; i < size - 1; i++){
             for (int j = 0; j < size - i - 1; j++){
-                T current = (T) array[j];
-                T next = (T) array[j + 1];
+                T current = array[j];
+                T next = array[j + 1];
                 if (cmp.compare(current, next) > 0){
                     array[j] = next;
                     array[j + 1] = current;
@@ -105,7 +105,7 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public int indexOf(Object object) {
+    public int indexOf(Object object) {  // finds the index of first occurrence of an object
         if (object == null){
             for (int i = 0; i < size; i++)
                 if (array[i] == null)
@@ -119,7 +119,7 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public int lastIndexOf(Object object) {
+    public int lastIndexOf(Object object) {  // finds the index of last occurrence of an object
         if (object == null){
             for (int i = size; i >= 0; i--)
                 if (array[i] == null)
@@ -158,7 +158,7 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator iterator() {  // needed to iterate through the collection
         return new MyIterator();
     }
     private class MyIterator implements Iterator<T>{
