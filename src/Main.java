@@ -2,21 +2,15 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        MyQueue<Integer> queue = new MyQueue<>();
-
-        System.out.println(queue.empty());
-
-        queue.enqueue(23);
-        queue.enqueue(14);
-        queue.enqueue(99);
-        queue.enqueue(1);
-
-        System.out.println(queue.empty());
-
-        System.out.println(queue.dequeue());
-
-        System.out.println(queue.size());
-
-        System.out.println(queue.peek());
+        MyMinHeap<Integer> heap = new MyMinHeap<>();
+        heap.insert(23);
+        heap.insert(14);
+        heap.insert(33);
+        heap.insert(1);
+        heap.insert(2);
+        System.out.println(heap.getMin());
+        System.out.println(heap.extractMin());
+        System.out.println(heap.getMin());
+        System.out.println(heap.size());
     }
 }
