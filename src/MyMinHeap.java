@@ -1,5 +1,5 @@
 public class MyMinHeap<T extends Comparable<T>>{
-    private MyList<T> heap;
+    private final MyList<T> heap;
 
     public MyMinHeap(){
         heap = new MyArrayList<>();
