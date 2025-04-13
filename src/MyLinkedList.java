@@ -3,16 +3,16 @@ import java.util.Iterator;
 
 public class MyLinkedList<T> implements MyList<T>{
 
-    private MyNode<T> head;
-    private MyNode<T> tail;
+    private MyNode<T> head;  // first
+    private MyNode<T> tail;  // last
     private int size;
 
     public MyLinkedList(){}
 
     private static class MyNode<E>{
-        E data;
-        MyNode<E> next;
-        MyNode<E> prev;
+        E data;  // value
+        MyNode<E> next;  // link to the next node
+        MyNode<E> prev;  // link to the previous node (doubly)
         MyNode(E data, MyNode<E> prev, MyNode<E> next){
             this.data = data;
             this.prev = prev;
@@ -20,9 +20,9 @@ public class MyLinkedList<T> implements MyList<T>{
         }
     }
 
-    private MyNode<T> node(int index){
+    private MyNode<T> node(int index){  // gets access to node by index
         MyNode<T> current;
-        if (index < size / 2){
+        if (index < size / 2){  // optimization, checks whether it is closer to the start or to the end
             current = head;
             for (int i = 0; i < index; i++)
                 current = current.next;
@@ -34,7 +34,7 @@ public class MyLinkedList<T> implements MyList<T>{
         return current;
     }
 
-    private void unlink(MyNode<T> newNode){
+    private void unlink(MyNode<T> newNode){  // deletes node itself
         MyNode<T> prev = newNode.prev;
         MyNode<T> next = newNode.next;
         if (prev == null)
@@ -122,7 +122,7 @@ public class MyLinkedList<T> implements MyList<T>{
     @Override
     public void remove(int index) {
         unlink(node(index));
-    }
+    }  // finds node by index (same for removing first and last)
 
     @Override
     public void removeFirst() {
@@ -135,7 +135,7 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     @Override
-    public void sort(Comparator<T> cmp) {
+    public void sort(Comparator<T> cmp) {  // bubble sort with comparator to compare objects
         for (int i = 0; i < size - 1; i++){
             MyNode<T> current = head;
             for (int j = 0; j < size - 1 - i; j++){
@@ -150,7 +150,7 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     @Override
-    public int indexOf(Object object) {
+    public int indexOf(Object object) {  // finds the index of first occurrence of an object
         int index = 0;
         if (object == null){
             for (MyNode<T> current = head; current != null; current = current.next){
@@ -169,7 +169,7 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     @Override
-    public int lastIndexOf(Object object) {
+    public int lastIndexOf(Object object) {  // finds the index of last occurrence of an object
         int index = size;
         if (object == null){
             for (MyNode<T> current = tail; current != null; current = current.prev){
@@ -221,7 +221,7 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator iterator() {  // needed to iterate through the collection
         return new MyIterator();
     }
     private class MyIterator implements Iterator<T>{
