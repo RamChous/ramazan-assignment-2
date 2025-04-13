@@ -35,7 +35,6 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     private void unlink(MyNode<T> newNode){
-        T element = newNode.data;
         MyNode<T> prev = newNode.prev;
         MyNode<T> next = newNode.next;
         if (prev == null)
