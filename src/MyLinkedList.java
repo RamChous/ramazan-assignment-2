@@ -137,7 +137,17 @@ public class MyLinkedList<T> implements MyList<T>{
 
     @Override
     public void sort(Comparator<T> cmp) {
-
+        for (int i = 0; i < size - 1; i++){
+            MyNode<T> current = head;
+            for (int j = 0; j < size - 1 - i; j++){
+                if (cmp.compare(current.data, current.next.data) > 0){
+                    T temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                }
+                current = current.next;
+            }
+        }
     }
 
     @Override
