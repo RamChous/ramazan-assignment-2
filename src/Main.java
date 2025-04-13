@@ -2,21 +2,21 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        MyStack<Integer> stack = new MyStack<>();
+        MyQueue<Integer> queue = new MyQueue<>();
 
-        System.out.println(stack.empty());
+        System.out.println(queue.empty());
 
-        stack.push(23);
-        stack.push(14);
-        stack.push(99);
-        stack.push(1);
+        queue.enqueue(23);
+        queue.enqueue(14);
+        queue.enqueue(99);
+        queue.enqueue(1);
 
-        System.out.println(stack.empty());
+        System.out.println(queue.empty());
 
-        System.out.println(stack.pop());
+        System.out.println(queue.dequeue());
 
-        System.out.println(stack.peek());
+        System.out.println(queue.size());
 
-        System.out.println(stack.size());
+        System.out.println(queue.peek());
     }
 }
