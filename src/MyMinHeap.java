@@ -3,23 +3,23 @@ public class MyMinHeap<T extends Comparable<T>>{
 
     public MyMinHeap(){
         heap = new MyArrayList<>();
-        heap.add(null);  // first element (index=0) must be null
+        heap.add(null);  // first element (index = 0) must be null
     }
 
     //     PUBLIC METHODS
     public boolean empty(){
-        return heap.size() == 1;
+        return heap.size() == 1;  // it always has one null element (index = 0)
     }
 
     public int size(){
-        return heap.size() - 1;
+        return heap.size() - 1;  // index starts from 1
     }
 
     public T getMin(){
-        return heap.get(1);
+        return heap.get(1);  // in 0 index it has null
     }
 
-    public T extractMin(){
+    public T extractMin(){  // deletes and returns min element
         T min = heap.get(1);
         T last = heap.getLast();
         heap.removeLast();
@@ -36,7 +36,7 @@ public class MyMinHeap<T extends Comparable<T>>{
     }
 
     //     PRIVATE METHODS
-    private void heapify(int index){
+    private void heapify(int index){  // moves the element down to the desired location
         int min = index;
         int left = leftChildOf(index);
         int right = rightChileOf(index);
@@ -50,7 +50,7 @@ public class MyMinHeap<T extends Comparable<T>>{
         }
     }
 
-    private void traverseUp(int index){
+    private void traverseUp(int index){  // moves the element up to the desired location
         while (index > 1 && heap.get(index).compareTo(heap.get(parentOf(index))) < 0){
             swap(index, parentOf(index));
             index = parentOf(index);
