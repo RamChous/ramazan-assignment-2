@@ -34,6 +34,26 @@ public class MyLinkedList<T> implements MyList<T>{
         return current;
     }
 
+    private void unlink(MyNode<T> newNode){
+        T element = newNode.data;
+        MyNode<T> prev = newNode.prev;
+        MyNode<T> next = newNode.next;
+        if (prev == null)
+            head = next;
+        else {
+            prev.next = next;
+            newNode.prev = null;
+        }
+        if (next == null)
+            tail = prev;
+        else{
+            next.prev = prev;
+            newNode.next = null;
+        }
+        newNode.data = null;
+        size--;
+    }
+
     @Override
     public void add(T item) {
         addLast(item);
@@ -102,17 +122,17 @@ public class MyLinkedList<T> implements MyList<T>{
 
     @Override
     public void remove(int index) {
-
+        unlink(node(index));
     }
 
     @Override
     public void removeFirst() {
-
+        unlink(head);
     }
 
     @Override
     public void removeLast() {
-
+        unlink(tail);
     }
 
     @Override
@@ -122,27 +142,68 @@ public class MyLinkedList<T> implements MyList<T>{
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        int index = 0;
+        if (object == null){
+            for (MyNode<T> current = head; current != null; current = current.next){
+                if (current.data == null)
+                    return index;
+                index++;
+            }
+        } else {
+            for (MyNode<T> current = head; current != null; current = current.next){
+                if (object.equals(current.data))
+                    return index;
+                index++;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        int index = size;
+        if (object == null){
+            for (MyNode<T> current = tail; current != null; current = current.prev){
+                index--;
+                if (current.data == null)
+                    return index;
+            }
+        } else {
+            for (MyNode<T> current = tail; current != null; current = current.prev){
+                index--;
+                if (object.equals(current.data))
+                    return index;
+            }
+        }
+        return -1;
     }
 
     @Override
     public boolean exists(Object object) {
-        return false;
+        return indexOf(object) != -1;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] result = new Object[size];
+        int i = 0;
+        for(MyNode<T> current = head; current != null; current = current.next)
+            result[i++] = current.data;
+        return result;
     }
 
     @Override
     public void clear() {
-
+        MyNode<T> current = head;
+        while (current != null){
+            MyNode<T> next = current.next;
+            current.data = null;
+            current.prev = null;
+            current.next = null;
+            current = next;
+        }
+        head = tail = null;
+        size = 0;
     }
 
     @Override
